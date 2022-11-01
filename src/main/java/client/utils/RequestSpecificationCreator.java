@@ -16,6 +16,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class RequestSpecificationCreator {
@@ -24,7 +26,7 @@ public class RequestSpecificationCreator {
     private final int socketTimeout = 60000;
 
     private final Integer[] statusCodes = {HttpStatus.SC_OK, HttpStatus.SC_CREATED, HttpStatus.SC_ACCEPTED};
-    private String authenticationToken;
+    private CustomHeaderBuilder specificationCreatorBuilder;
 
     static {
         RestAssured.defaultParser = Parser.JSON;
@@ -32,8 +34,8 @@ public class RequestSpecificationCreator {
             new ObjectMapperConfig().jackson2ObjectMapperFactory((cls, charset) -> DefaultObjectMapper.getInstance()));
     }
 
-    public RequestSpecificationCreator(RequestSpecificationCreatorBuilder builder) {
-        this.authenticationToken = builder.getAuthToken();
+    public RequestSpecificationCreator(CustomHeaderBuilder builder) {
+        this.specificationCreatorBuilder = builder;
     }
 
     public RequestSpecificationCreator() {}
@@ -45,8 +47,8 @@ public class RequestSpecificationCreator {
                     .setParam("http.connection.timeout", connectionTimeout)
                     .setParam("http.socket.timeout", socketTimeout)))
             .setContentType(ContentType.JSON);
-        if(authenticationToken != null) {
-            requestSpecBuilder.addHeader("Authorization", "Bearer " + authenticationToken);
+        if(!Objects.isNull(specificationCreatorBuilder)) {
+            specificationCreatorBuilder.getHeaders().entrySet().forEach(entry -> requestSpecBuilder.addHeader(entry.getKey(), entry.getValue()));
         }
         return requestSpecBuilder;
     }
@@ -112,15 +114,15 @@ public class RequestSpecificationCreator {
     }
 
 
-    public static class RequestSpecificationCreatorBuilder {
-        private String authToken;
+    public static class CustomHeaderBuilder {
+        private Map<String, String> headers;
 
-        public String getAuthToken() {
-            return authToken;
+        public Map<String, String> getHeaders() {
+            return headers;
         }
 
-        public RequestSpecificationCreatorBuilder setAuthToken(String authToken) {
-            this.authToken = authToken;
+        public CustomHeaderBuilder setHeaders(Map<String, String> headers) {
+            this.headers = headers;
             return this;
         }
 

@@ -3,7 +3,7 @@ package client;
 import client.utils.HttpRequestType;
 import client.utils.RequestSpecificationBuilder;
 import client.utils.RequestSpecificationCreator;
-import client.utils.RequestSpecificationCreator.RequestSpecificationCreatorBuilder;
+import client.utils.RequestSpecificationCreator.CustomHeaderBuilder;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -20,7 +20,7 @@ public class RestClient {
         requestSpecification = new RequestSpecificationCreator().getDefaultRequestSpecification();
     }
 
-    public RestClient(RequestSpecificationCreatorBuilder requestSpecificationCreatorBuilder) {
+    public RestClient(CustomHeaderBuilder requestSpecificationCreatorBuilder) {
         requestSpecification = new RequestSpecificationCreator(requestSpecificationCreatorBuilder).getDefaultRequestSpecification();
     }
 
