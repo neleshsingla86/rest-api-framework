@@ -1,0 +1,43 @@
+<configuration>
+    <!--
+        Different log level can be passed using -DlogLevel=INFO.
+        Default value is set to DEBUG for local runs.
+    -->
+    <variable name="LOG_LEVEL" value="${logLevel:-DEBUG}"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- methodName is set in TestBase for each test -->
+            <pattern>%d{MM-dd-yyyy HH:mm:ss.SSS} [%level] %X{methodName} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.amazonaws" level="INFO"/>
+    <logger name="org.apache.http" level="INFO"/>
+    <logger name="io.restassured" level="INFO"/>
+    <logger name="org.apache.poi" level="ERROR"/>
+    <logger name="io.qameta.allure.AllureLifecycle" level="OFF"/>
+
+    <appender name="FILE-THREAD" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>methodName</Key>
+            <DefaultValue>notTestMethod</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE-${methodName}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <FileNamePattern>logs/%d/${methodName}.log</FileNamePattern>
+                    <maxHistory>7</maxHistory>
+                </rollingPolicy>
+                <layout class="ch.qos.logback.classic.PatternLayout">
+                    <Pattern>%d{MM-dd-yyyy HH:mm:ss.SSS} - %-5level %C{1} [%M:%L] [%thread] - %msg%n%ex{full}</Pattern>
+                </layout>
+            </appender>
+        </sift>
+    </appender>
+
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE-THREAD"/>
+    </root>
+</configuration>
