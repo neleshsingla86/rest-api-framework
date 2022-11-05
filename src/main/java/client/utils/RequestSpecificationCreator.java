@@ -7,15 +7,19 @@ import io.restassured.config.HttpClientConfig;
 import io.restassured.config.ObjectMapperConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.ContentType;
+import io.restassured.http.Cookie;
+import io.restassured.http.Cookies;
 import io.restassured.http.Header;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.parsing.Parser;
 import io.restassured.specification.FilterableRequestSpecification;
 import io.restassured.specification.RequestSpecification;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -38,7 +42,8 @@ public class RequestSpecificationCreator {
         this.specificationCreatorBuilder = builder;
     }
 
-    public RequestSpecificationCreator() {}
+    public RequestSpecificationCreator() {
+    }
 
     private RequestSpecBuilder getDefaultRequestSpecBuilder() {
         RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder()
@@ -47,8 +52,9 @@ public class RequestSpecificationCreator {
                     .setParam("http.connection.timeout", connectionTimeout)
                     .setParam("http.socket.timeout", socketTimeout)))
             .setContentType(ContentType.JSON);
-        if(!Objects.isNull(specificationCreatorBuilder)) {
+        if (!Objects.isNull(specificationCreatorBuilder)) {
             specificationCreatorBuilder.getHeaders().entrySet().forEach(entry -> requestSpecBuilder.addHeader(entry.getKey(), entry.getValue()));
+            specificationCreatorBuilder.getCookies().forEach(cookie -> requestSpecBuilder.addCookie(cookie));
         }
         return requestSpecBuilder;
     }
@@ -116,6 +122,7 @@ public class RequestSpecificationCreator {
 
     public static class CustomHeaderBuilder {
         private Map<String, String> headers;
+        private List<Cookie> cookies;
 
         public Map<String, String> getHeaders() {
             return headers;
@@ -123,6 +130,15 @@ public class RequestSpecificationCreator {
 
         public CustomHeaderBuilder setHeaders(Map<String, String> headers) {
             this.headers = headers;
+            return this;
+        }
+
+        public List<Cookie> getCookies() {
+            return cookies;
+        }
+
+        public CustomHeaderBuilder setCookies(List<Cookie> cookies) {
+            this.cookies = cookies;
             return this;
         }
 
