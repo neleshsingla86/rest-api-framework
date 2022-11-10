@@ -3,6 +3,7 @@ package goreset;
 import actions.UserActions;
 import asserts.UserAsserts;
 import client.GoRestApiClient;
+import com.brandwatch.junit5.TestBase;
 import com.fasterxml.jackson.core.type.TypeReference;
 import datamodels.gorest.User;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * An example Test class describing how to use the framework to write tests
  */
-public class UserTests {
+public class UserTests extends TestBase {
     private static final Logger logger = LoggerFactory.getLogger(UserTests.class);
 
     private GoRestApiClient client = new GoRestApiClient();
@@ -25,7 +26,8 @@ public class UserTests {
      */
     @Test
     public void testGettingAllUsers() {
-        List<User> usersList = UserActions.getUsers(client, new TypeReference<List<User>>() {});
+        List<User> usersList = UserActions.getUsers(client, new TypeReference<List<User>>() {
+        });
         logger.trace(() -> "Users: " + usersList);
     }
 
