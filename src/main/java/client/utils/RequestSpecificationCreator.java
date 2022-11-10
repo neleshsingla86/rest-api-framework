@@ -53,8 +53,12 @@ public class RequestSpecificationCreator {
                     .setParam("http.socket.timeout", socketTimeout)))
             .setContentType(ContentType.JSON);
         if (!Objects.isNull(specificationCreatorBuilder)) {
-            specificationCreatorBuilder.getHeaders().entrySet().forEach(entry -> requestSpecBuilder.addHeader(entry.getKey(), entry.getValue()));
-            specificationCreatorBuilder.getCookies().forEach(cookie -> requestSpecBuilder.addCookie(cookie));
+            if (specificationCreatorBuilder.getHeaders() != null) {
+                specificationCreatorBuilder.getHeaders().entrySet().forEach(entry -> requestSpecBuilder.addHeader(entry.getKey(), entry.getValue()));
+            }
+            if (specificationCreatorBuilder.getCookies() != null) {
+                specificationCreatorBuilder.getCookies().forEach(cookie -> requestSpecBuilder.addCookie(cookie));
+            }
         }
         return requestSpecBuilder;
     }
