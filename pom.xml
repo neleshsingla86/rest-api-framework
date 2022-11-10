@@ -9,12 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <!-- Java Versions -->
         <java.version>11</java.version>
-        <junit.bom.version>5.9.1</junit.bom.version>
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <junit.platform.version>1.9.1</junit.platform.version>
-
         <!-- API Dependency Versions -->
         <restassured.version>5.2.0</restassured.version>
         <com.fasterxml.jackson.version>2.13.4</com.fasterxml.jackson.version>
@@ -24,13 +19,9 @@
         <!-- Plugin Versions -->
         <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
-        <!-- Reporting Plugins -->
-        <allure.report.version>2.19.0</allure.report.version>
-        <aspectj.version>1.9.9.1</aspectj.version>
-        <allure.plugin.version>2.11.2</allure.plugin.version>
 
         <!-- Utils -->
-        <junit5-framework.version>1.0.0</junit5-framework.version>
+        <junit5-framework.version>2.0.0</junit5-framework.version>
         <guava.version>31.1-jre</guava.version>
         <hamcrest.version>2.2</hamcrest.version>
     </properties>
@@ -44,6 +35,12 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>io.github.nsingla</groupId>
+            <artifactId>junit5-framework</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -79,22 +76,6 @@
             <groupId>com.github.jonpeterson</groupId>
             <artifactId>jackson-module-model-versioning</artifactId>
             <version>${jackson.model.versioning.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.jupiter.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-commons</artifactId>
-            <version>${junit.platform.version}</version>
         </dependency>
 
         <dependency>
@@ -136,30 +117,6 @@
                 <configuration>
                     <trimStackTrace>false</trimStackTrace>
                     <testFailureIgnore>false</testFailureIgnore>
-                    <useFile>false</useFile>
-                    <argLine>
-                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-                    </argLine>
-                    <systemPropertyVariables>
-                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-                    </systemPropertyVariables>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>${allure.plugin.version}</version>
-                <configuration>
-                    <reportVersion>${allure.report.version}</reportVersion>
-                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
-                    <reportDirectory>${project.build.directory}/allure-reports</reportDirectory>
                 </configuration>
             </plugin>
         </plugins>
