@@ -21,7 +21,7 @@
         <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
 
         <!-- Utils -->
-        <junit5-framework.version>2.0.0</junit5-framework.version>
+        <junit5.framework.version>2.0.0</junit5.framework.version>
         <guava.version>31.1-jre</guava.version>
         <hamcrest.version>2.2</hamcrest.version>
     </properties>
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>io.github.nsingla</groupId>
             <artifactId>junit5-framework</artifactId>
-            <version>2.0.0</version>
+            <version>${junit5.framework.version}</version>
         </dependency>
 
         <dependency>
