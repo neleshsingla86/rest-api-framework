@@ -3,7 +3,7 @@ package goreset;
 import actions.UserActions;
 import asserts.UserAsserts;
 import client.GoRestApiClient;
-import com.brandwatch.junit5.TestBase;
+import io.nsingla.junit5.TestBase;
 import com.fasterxml.jackson.core.type.TypeReference;
 import datamodels.gorest.User;
 import org.apache.commons.lang3.RandomStringUtils;
