@@ -12,8 +12,7 @@
         <java.version>11</java.version>
         <!-- API Dependency Versions -->
         <restassured.version>5.2.0</restassured.version>
-        <com.fasterxml.jackson.version>2.13.4</com.fasterxml.jackson.version>
-        <com.github.fge.jackson.version>1.8</com.github.fge.jackson.version>
+        <com.fasterxml.jackson.version>2.7.1</com.fasterxml.jackson.version>
         <jackson.model.versioning.version>1.2.2</jackson.model.versioning.version>
 
         <!-- Plugin Versions -->
@@ -21,7 +20,7 @@
         <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
 
         <!-- Utils -->
-        <junit5.framework.version>2.1.0</junit5.framework.version>
+        <junit5.framework.version>2.1.1</junit5.framework.version>
         <guava.version>31.1-jre</guava.version>
         <hamcrest.version>2.2</hamcrest.version>
     </properties>

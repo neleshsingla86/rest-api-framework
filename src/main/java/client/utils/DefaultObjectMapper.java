@@ -29,7 +29,7 @@ public class DefaultObjectMapper {
             .configure(SerializationFeature.WRAP_ROOT_VALUE, false) // Don't wrap the root value
             .setSerializationInclusion(JsonInclude.Include.NON_NULL) // Don't serialize null values
             .enable(JsonParser.Feature.ALLOW_COMMENTS)
-            .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS) // Accept case insensitive enum values
+            .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES) // Accept case insensitive
             .setDateFormat(dateFormat)
             .setDefaultPrettyPrinter(new DefaultPrettyPrinter())
             .setFilterProvider(new SimpleFilterProvider().setFailOnUnknownId(false));
