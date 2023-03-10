@@ -69,7 +69,7 @@ public class EndpointsBase {
      *
      * @param specificationBuilder {@link RequestSpecificationBuilder} specification builder
      * @param httpStatus           Expected status code (optional)
-     * @return {@link RequestSpecificationBuilder}
+     * @return {@link RequestSpecificationBuilder} - request specification builder
      */
     private static RequestSpecificationBuilder setExpectedStatusCodes(RequestSpecificationBuilder specificationBuilder,
                                                                       int... httpStatus) {

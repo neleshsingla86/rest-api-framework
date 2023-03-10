@@ -17,7 +17,7 @@ public class UserActions extends EndpointsBase {
      *
      * @param client       - rest session
      * @param user         - user payload
-     * @param responseType - response type e.g. {@link User}
+     * @param responseType - <T> Generic response type e.g. {@link User}
      * @param httpStatus   - Optional expected HTTP Status code in the response
      * @return T of the given responseType
      */
@@ -30,7 +30,7 @@ public class UserActions extends EndpointsBase {
      * Get list of users
      *
      * @param client       - rest session
-     * @param responseType - response type e.g. {@link TypeReference<java.util.List<User>>}
+     * @param responseType - response type e.g. {@link TypeReference}&lt;{@link java.util.List}&lt;{@link User}&gt;&gt;
      * @param httpStatus   - Optional expected HTTP Status code in the response
      * @return T of the given responseType
      */
@@ -45,7 +45,7 @@ public class UserActions extends EndpointsBase {
      *
      * @param client       - rest session
      * @param userId       - id of the user whose info you want to retrieve
-     * @param responseType - response type e.g. {@link User}
+     * @param responseType - <T> generic response type e.g. {@link User}
      * @param httpStatus   - Optional expected HTTP Status code in the response
      * @return T of the given responseType
      */
