@@ -8,6 +8,41 @@
     <artifactId>rest-api-framework</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <url>https://github.com/nsingla/rest-api-framework</url>
+    <developers>
+        <developer>
+            <id>nsingla</id>
+            <name>Nelesh Singla</name>
+            <email>mindipatiala@gmail.com</email>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>Apache 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/nsingla/rest-api-framework</url>
+        <connection>scm:git:git://github.com/nsingla/rest-api-framework.git</connection>
+        <developerConnection>scm:git:git@github.com:nsingla/rest-api-framework.git</developerConnection>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>ossrh</id>
+            <name>Central Repository OSSRH</name>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
     <properties>
         <java.version>11</java.version>
         <!-- API Dependency Versions -->
@@ -27,14 +62,6 @@
         <guava.version>31.1-jre</guava.version>
         <hamcrest.version>2.2</hamcrest.version>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>maven-central</id>
-            <url>https://repo.maven.apache.org/maven2</url>
-        </repository>
-    </repositories>
-
 
     <dependencies>
         <dependency>
